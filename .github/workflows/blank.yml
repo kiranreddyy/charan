@@ -39,6 +39,7 @@ jobs:
     Build-Image:
       name: charan
       runs-on: ubuntu-latest
+      
      # Login to the Azure
       steps:
         - name: Azure login
@@ -51,7 +52,7 @@ jobs:
           env:
             PRODUCT_VERSION: "latest"
 
-         # This task is setup the packer
+       # This task is setup the packer
         - name: Setup Packer
           uses: hashicorp/setup-packer@main
           id: setup
@@ -70,11 +71,4 @@ jobs:
 
     # JOB 2 ENDS  *********************************************************************************** *******************************************
            
-
-
-  
-        - name: Promote Image
-          run: |
-           echo "Testing Image Promotion Script for ${{ inputs.runtype}}"
-     # JOB 6 ENDS  ***************************************** ***************************************** *******************************************
    
