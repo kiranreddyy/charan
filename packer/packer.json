@@ -30,7 +30,7 @@
       "tenant_id": "{{user `AZURE_TENANT_ID`}}",
       "subscription_id": "{{user `AZURE_SUBSCRIPTION_ID`}}",
       "client_id": "{{user `AZURE_CLIENT_ID`}}",
-      "client_secrete": "{{ user `AZURE_CLIENT_SECRETE`}}",
+      "client_secret": "{{ user `AZURE_CLIENT_SECRETE`}}",
       
       "communicator": "{{user `communicator`}}",
       "winrm_username": "{{user `winrm_username`}}",
