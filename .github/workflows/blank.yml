@@ -1,5 +1,5 @@
 # Name of Action workflow
-name: Image Creation Pipeline
+name: Set - Get the Values
 on: [workflow_dispatch]
 
 permissions:
@@ -17,9 +17,9 @@ jobs:
       - name: Azure login
         uses: azure/login@v1
         with:
-            client-id: ${{ secrets.AZURE_CLIENT_ID }}
-            tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+            client-id: "d82451ce-9715-41d8-8007-a177082d6dd3"
+            tenant-id: "411962c5-bfd8-43e3-b5a7-fac389f9d4ea"
+            subscription-id: "60338480-8af5-4fc6-80fb-2715b3c42f42"
             enable-AzPSSession: true
             
         # Checkout repo code
