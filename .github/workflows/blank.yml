@@ -25,35 +25,31 @@ jobs:
     Build-Image:
       name: Job-2
       runs-on: ubuntu-latest
-      
-     # Login to the Azure
-      steps:
-        - name: Azure login
-          uses: azure/login@v1
-          with:
-            client-id: ${{ secrets.AZURE_CLIENT_ID }}
-            tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-            enable-AzPSSession: true
-          env:
-            PRODUCT_VERSION: "latest"
 
        # This task is setup the packer
-        - name: Setup Packer
-          uses: hashicorp/setup-packer@main
-          id: setup
-          with:
-            version: "1.8.6"
+      steps:
+      - name: Checkout repo code
+        uses: actions/checkout@v1
+        
+      - name: Setup Packer
+        uses: hashicorp/setup-packer@v1
+        with:
+          version: "latest"
 
         # This task is build the packer Image using GitHub secrets
-        - name: build custom image
-          run: >
-                packer build -force "-var-file=Packer/Variables.json"  
+      - name: build custom image
+        run: >
+          packer build -force "-var-file=Packer/Variables.json"
+        env:
+            client-id: "d82451ce-9715-41d8-8007-a177082d6dd3"
+            tenant-id: "411962c5-bfd8-43e3-b5a7-fac389f9d4ea"
+            subscription-id: "60338480-8af5-4fc6-80fb-2715b3c42f42"
+            client_secret: "EuW8Q~5xTryWaoPHB4aBglvsjvP232XVkbb.pbi0"
     
-        - name: Get-Variables
-          uses: actions/download-artifact@v2
-          with:
-            name: my-artifact
+      - name: Get-Variables
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
 
     # JOB 2 ENDS  ******************************************************************************************************************************
            
