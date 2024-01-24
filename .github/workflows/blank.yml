@@ -11,7 +11,6 @@ jobs:
       # Variable-setup
       - name: set-variables
         uses: actions/checkout@v1
-      - run: packer/Variables.json > word.ps1
       
       - uses: actions/upload-artifact@v2
         with:
