@@ -14,7 +14,9 @@ jobs:
         
         # Set Variables
       - name: set-variables
+      - uses: actions/upload-artifact@v2
       - run: packer/Variables.json > word.ps1
+      
       - uses: actions/upload-artifact@v2
         with:
             name: my-artifact
