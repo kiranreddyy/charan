@@ -20,5 +20,6 @@
   "os_type": "Windows",
   "vm_size": "Standard_D8_v3",
   "offer": "WindowsServer",
-  "sku": "2019-Datacenter"
+  "sku": "2019-Datacenter",
+  "publisher": "MicrosoftWindowsServer"
  }
