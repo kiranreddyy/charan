@@ -20,7 +20,9 @@
     "vm_name": "",
     "vm_size": "",
     "os_type": "",
-    "sku": ""
+    "sku": "",
+    "image_publisher": ""
+    
   },
 
   "builders": [
@@ -50,6 +52,7 @@
       "image_offer": "{{user `offer`}}",
       "os_type": "{{user `os_type`}}",
       "image_sku": "{{ user `sku`}}",
+      "image_publisher": "{{ user `publisher`}}",
    
       "azure_tags": {
         "bu": "sbo",
