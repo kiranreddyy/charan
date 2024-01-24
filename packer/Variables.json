@@ -11,10 +11,10 @@
   "winrm_insecure": "true",
   "winrm_timeout": "5m",
   
-  "resource_group_name": "CSGRG",
-  "Virtual_Network": "CSGVnet",
-  "Subnet": "CSG-subnet",
-  "Virtual_NetworkRG": "CSGRG",
+  "resource_group_name": "csgrg",
+  "Virtual_Network": "csgvnet",
+  "Subnet": "csgsubnet",
+  "Virtual_NetworkRG": "csgrg",
   
   "vm_name": "CSG-Image",
   "os_type": "Windows",
