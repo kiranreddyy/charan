@@ -33,6 +33,11 @@ jobs:
         uses: hashicorp/setup-packer@main
         with:
           version: "1.8.6"
+
+      - name: Get-Variables
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
         
       - name: build custom image
         run: >
@@ -42,11 +47,6 @@ jobs:
             tenant-id: "411962c5-bfd8-43e3-b5a7-fac389f9d4ea"
             subscription-id: "60338480-8af5-4fc6-80fb-2715b3c42f42"
             client_secret: "EuW8Q~5xTryWaoPHB4aBglvsjvP232XVkbb.pbi0"
-    
-      - name: Get-Variables
-        uses: actions/download-artifact@v2
-        with:
-          name: my-artifact
 
     # JOB 2 ENDS  ******************************************************************************************************************************
            
