@@ -7,17 +7,8 @@ jobs:
    # JOB 1 : This job is to validate all the input values used in workflow. ********************************************************************************** *******************************************
     Job-1:
       runs-on: ubuntu-latest
-      steps:
-      # Login to the Azure
-      - name: Azure login
-        uses: azure/login@v1
-        with:
-            client-id: "d82451ce-9715-41d8-8007-a177082d6dd3"
-            tenant-id: "411962c5-bfd8-43e3-b5a7-fac389f9d4ea"
-            subscription-id: "60338480-8af5-4fc6-80fb-2715b3c42f42"
-            client_secret: "EuW8Q~5xTryWaoPHB4aBglvsjvP232XVkbb.pbi0"
-            
-        # Checkout repo code
+      steps:      
+      # Checkout repo code
       - name: Checkout repo code
         uses: actions/checkout@v1
         
