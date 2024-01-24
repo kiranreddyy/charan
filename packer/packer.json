@@ -37,11 +37,8 @@
       "managed_image_name": "{{user `vm_name`}}",
       "vm_size": "{{user `vm_size`}}",
       "os_type": "{{user `os_type`}}",
-      "image_publisher": "{{ user `publisher`}}",
-      "image_offer": "{{ user `offer`}}",
       "image_sku": "{{ user `sku`}}",
-      "image_version": "{{ user `image_version`}}",
-    
+   
       "azure_tags": {
         "bu": "sbo",
         "environment": "dev",
@@ -50,140 +47,10 @@
       }
     }
   ],
-  "provisioners": [
+  "provisioners": [ 
     {
       "type": "powershell",
       "inline": [
-        "Install-PackageProvider -Name Nuget -MinimumVersion 2.8.5.201 -Force",
-        "Install-Module -Name PowerShellGet -Force",
-        "Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted",
-        "Install-Module -Name Az -Force",
-        "Install-Module -Name 7Zip4Powershell -RequiredVersion 2.4.0 -Force"
-       ]
-    },
-    {
-      "type": "file",
-      "source": "Common/Download_AzBlobWorkloadSoftwares.ps1",
-      "destination": "/tmp/Download_AzBlobWorkloadSoftwares.ps1",
-      "direction": "upload"
-    },
-    {
-      "type": "file",
-      "source": "DTS/PowershellScripts/Apply_SoftwareProvision.ps1",
-      "destination": "/tmp/Apply_SoftwareProvision.ps1",
-      "direction": "upload"
-    },
-    {
-      "type": "file",
-      "source": "DTS/PowershellScripts/Apply_SqlConfigurations.ps1",
-      "destination": "/tmp/Apply_SqlConfigurations.ps1",
-      "direction": "upload"
-    },
-    {
-      "type": "file",
-      "source": "DTS/Packer/ValidationConfig.json",
-      "destination": "/tmp/ValidationConfig.json",
-      "direction": "upload"
-    },
-    {
-      "type": "file",
-      "source": "DTS/PowershellScripts/Enable_SQLServiceStart.ps1",
-      "destination": "{{user `sqlsrvdestination`}}",
-      "direction": "upload"
-    },
-    {
-      "type": "file",
-       "source": "DTS/PowershellScripts/Execute_SqlServiceStart.cmd",
-      "destination": "{{user `sqlstupdest`}}",
-      "direction": "upload"
-    },
-     {
-      "type": "file",
-       "source": "DTS/PowershellScripts/Apply_Sqllogupload.ps1",
-      "destination": "/tmp/Apply_Sqllogupload.ps1",
-      "direction": "upload"
-    },
-    {
-      "type": "file",
-      "source": "DTS/PowershellScripts/Execute_FunctionalValidation.ps1",
-      "destination": "/tmp/Execute_FunctionalValidation.ps1",
-      "direction": "upload"
-    },
-    {
-      "type": "powershell",
-      "environment_vars": [
-        "storageAccountName = {{user `storageAccountName`}}",
-        "container_name = {{user `container_name`}}",
-        "resourceGroup = {{user `resourceGroup`}}",
-        "StorageAccountKey = {{user `StorageAccountKey`}}"
-      ],
-      "inline": [
-        "/tmp/Download_AzBlobWorkloadSoftwares.ps1"
-      ]
-    },
-    {
-      "type": "powershell",
-      "environment_vars": [
-        "tmpFolderPath = {{user `tmpFolderPath`}}",
-        "sys32FolderPath = {{user `sys32FolderPath`}}",
-        "environment_setup = {{ user `environment_setup`}}"
-      ],
-     "inline": [
-        "/tmp/Apply_SoftwareProvision.ps1"
-      ]
-    }, 
-    
-    {
-      "type": "powershell",
-      "inline": [
-        "C:\\tmp\\PsExec.exe -s -accepteula C:\\tmp\\sqlsw\\SQLEXPRESS\\SETUP.EXE /q /ACTION=Install /FEATURES=SQLEngine /INSTANCENAME=SQLEXPRESS /SQLSYSADMINACCOUNTS=packer /IACCEPTSQLSERVERLICENSETERMS /SQLCollation=SQL_Latin1_General_CP1_CI_AS /SecurityMode=SQL /SAPWD={{user `SAPSWD`}}"        
-      ]
-    },
-    {
-      "type": "powershell",
-      "environment_vars": [
-        "storageAccountName = {{user `storageAccountName`}}",
-        "container_name = {{user `container_name`}}",
-        "resourceGroup = {{user `resourceGroup`}}",
-        "StorageAccountKey = {{user `StorageAccountKey`}}"
-      ],
-      "inline": [
-        "/tmp/Apply_SqlConfigurations.ps1"
-      ]
-    }, 
-
-    {
-      "type": "powershell",
-      "environment_vars": [
-        "storageAccountName = {{user `storageAccountName`}}",
-        "containersqllogs = {{user `containersqllogs`}}",
-        "resourceGroup = {{user `resourceGroup`}}",
-        "StorageAccountKey = {{user `StorageAccountKey`}}",
-        "sqlLogPath = {{user `sqlLogPath`}}",
-        "zipFolderLocation = {{user `zipFolderLocation`}}"
-      ],
-      "inline": [
-        "/tmp/Apply_Sqllogupload.ps1"
-      ]
-    },
-    {
-      "type": "powershell",
-      "environment_vars": [
-        "storageAccountName = {{user `storageAccountName`}}",
-	      "runId = {{user `runId`}}",
-	      "StorageAccountKey = {{user `StorageAccountKey`}}",
-	      "containerValidationlogs = {{user `containerValidationlogs`}}",
-	      "tmpFolderPath = {{user `tmpFolderPath`}}"
-      ],
-      "inline": [
-        "/tmp/Execute_FunctionalValidation.ps1"
-      ]
-    },     
-    {
-      "type": "powershell",
-      "inline": [
-    
-        "Remove-Item 'C:/tmp' -Force -Recurse -ErrorAction SilentlyContinue",
         "while ((Get-Service RdAgent).Status -ne 'Running') { Start-Sleep -s 5 }",
         "while ((Get-Service WindowsAzureGuestAgent).Status -ne 'Running') { Start-Sleep -s 5 }",
         "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
