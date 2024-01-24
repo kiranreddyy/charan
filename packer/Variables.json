@@ -10,14 +10,15 @@
   "winrm_use_ssl": "true",
   "winrm_insecure": "true",
   "winrm_timeout": "5m",
+  
   "resource_group_name": "CSGRG",
   "Virtual_Network": "CSGVnet",
   "Subnet": "CSG-subnet",
   "Virtual_NetworkRG": "CSGRG",
+  
   "vm_name": "CSG-Image",
   "os_type": "Windows",
   "vm_size": "Standard_D8_v3",
-  "region": "East US",
   "offer": "WindowsServer",
   "sku": "2019-Datacenter"
  }
