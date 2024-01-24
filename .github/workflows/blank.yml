@@ -36,7 +36,7 @@ jobs:
           
       - name: build custom image
         run: >
-          packer build -force "-var-file=Packer/Variables.json"
+          packer build -force "-var-file=packer/Variables.json"
         env:
             client-id: "d82451ce-9715-41d8-8007-a177082d6dd3"
             tenant-id: "411962c5-bfd8-43e3-b5a7-fac389f9d4ea"
