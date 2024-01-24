@@ -47,7 +47,7 @@
       
       "managed_image_name": "{{user `vm_name`}}",
       "vm_size": "{{user `vm_size`}}",
-      "image_offer": {{user `offer`}},
+      "image_offer": "{{user `offer`}}",
       "os_type": "{{user `os_type`}}",
       "image_sku": "{{ user `sku`}}",
    
