@@ -33,12 +33,7 @@ jobs:
         uses: hashicorp/setup-packer@main
         with:
           version: "1.8.6"
-
-      - name: Set up Azure CLI
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          
+        
       - name: build custom image
         run: >
           packer build "-var-file=packer/Variables.json" packer/packer.json
