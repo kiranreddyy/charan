@@ -17,7 +17,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: packer/Variables.json
+          path: values.ps1
 
     # JOB 1 ENDS  *****************************************************************************************************************************
    
