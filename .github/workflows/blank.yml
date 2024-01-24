@@ -25,18 +25,15 @@ jobs:
     Build-Image:
       name: Job-2
       runs-on: ubuntu-latest
-
-       # This task is setup the packer
       steps:
       - name: Checkout repo code
         uses: actions/checkout@v1
         
       - name: Setup Packer
-        uses: hashicorp/setup-packer@v1
+        uses: hashicorp/setup-packer@main
         with:
-          version: "latest"
-
-        # This task is build the packer Image using GitHub secrets
+          version: "1.8.6"
+          
       - name: build custom image
         run: >
           packer build -force "-var-file=Packer/Variables.json"
