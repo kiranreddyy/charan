@@ -20,7 +20,7 @@
     "vm_name": "",
     "vm_size": "",
     "os_type": "",
-    "sku": "",
+    "sku": ""
   },
 
   "builders": [
