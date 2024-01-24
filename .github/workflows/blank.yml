@@ -1,35 +1,7 @@
 # Name of Action workflow
 name: Image Creation Pipeline
-on: 
- workflow_dispatch:
-  inputs:
-      application:
-        description: 'Application Name'
-        required: true
-        default: 'DTS'
-        type: choice
-        options:
-        - DTS
-        - Licensing
-      runtype:
-        description: 'Run Type'
-        required: true
-        default: 'Build'
-        type: choice
-        options:
-        - Build
-        - Promote to Staging
-        - Promote to Production
-      
-# Declaring the variables in env   
-env:
-   winrm_password: ${{ secrets.WINRM_PASSWORD}}
-   StorageAccountKey: ${{ secrets.STORAGEACCOUNTKEY }}
-   sapassword: ${{ secrets.SAPWD }}
-   subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-   environment_setup: ${{ secrets.Environment_Setup }}
-   runId: ${{ github.run_id }}
-   
+on: [workflow_dispatch]
+
 permissions:
       id-token: write
       pages: write
