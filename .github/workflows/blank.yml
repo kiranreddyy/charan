@@ -4,7 +4,7 @@ jobs:
 #Job-1
   set-variables:
     name: set-variables
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - run: mkdir -p path/to/artifact
