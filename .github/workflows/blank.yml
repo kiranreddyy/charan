@@ -8,13 +8,9 @@ jobs:
     Job-1:
       runs-on: ubuntu-latest
       steps:      
-      # Checkout repo code
-      - name: Checkout repo code
-        uses: actions/checkout@v1
-        
-        # Set Variables
+      # Variable-setup
       - name: set-variables
-      - uses: actions/upload-artifact@v2
+        uses: actions/checkout@v1
       - run: packer/Variables.json > word.ps1
       
       - uses: actions/upload-artifact@v2
