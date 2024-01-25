@@ -33,11 +33,6 @@ jobs:
       steps:
       - name: Checkout repo code
         uses: actions/checkout@v1
-        
-      - name: Setup Packer
-        uses: hashicorp/setup-packer@main
-        with:
-          version: "1.8.6"
 
       - name: Cache Primes
       id: cache-primes
@@ -46,18 +41,16 @@ jobs:
         path: prime-numbers
         key: ${{ runner.os }}-primes
 
-      - name: Generate Prime Numbers
       if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: /generate-primes.sh -d prime-numbe
-        
-      - name: build custom image
-        run: >
+      run: 
+          /generate-primes.sh -d prime-numbe
           packer build "-var-file=packer/Variables.json" packer/packer.json
+          
         env:
-            client-id: "d82451ce-9715-41d8-8007-a177082d6dd3"
-            tenant-id: "411962c5-bfd8-43e3-b5a7-fac389f9d4ea"
-            subscription-id: "60338480-8af5-4fc6-80fb-2715b3c42f42"
-            client_secret: "EuW8Q~5xTryWaoPHB4aBglvsjvP232XVkbb.pbi0"
+          client-id: "d82451ce-9715-41d8-8007-a177082d6dd3"
+          tenant-id: "411962c5-bfd8-43e3-b5a7-fac389f9d4ea"
+          subscription-id: "60338480-8af5-4fc6-80fb-2715b3c42f42"
+          client_secret: "EuW8Q~5xTryWaoPHB4aBglvsjvP232XVkbb.pbi0"
 
     # JOB 2 ENDS  ******************************************************************************************************************************
            
