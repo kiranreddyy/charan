@@ -14,10 +14,12 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            path/to/data
-          key: ${{ runner.os }}-data-${{ hashFiles('path/to/data/**') }}
+            path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-data-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
             
   use-data:
     needs: build
@@ -26,11 +28,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Restore Cached Data
+      - name: Cache Primes
+        id: cache-primes
         uses: actions/cache@v2
         with:
-          path: |
-            path/to/data
-          key: ${{ runner.os }}-data-${{ hashFiles('path/to/data/**') }}
+          path: prime-numbers
+          key: ${{ runner.os }}-primes
+          
+      - name: Generate Prime Numbers
+        if: steps.cache-primes.outputs.cache-hit != 'true'
+        run: /generate-primes.sh -d prime-numbe
 
 
