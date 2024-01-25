@@ -4,54 +4,33 @@ on: [workflow_dispatch]
       
 # Jobs are listed to be run of GitHub runners. 
 jobs:
-   # JOB 1 : This job is to validate all the input values used in workflow. ********************************************************************************** *******************************************
-    Job-1:
-      runs-on: ubuntu-latest
-      steps:      
-      # Variable-setup
-      - name: set-variables
-        uses: actions/checkout@v1
-      
-      - name: Cache node modules
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache Data
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          path: |
+            path/to/data
+          key: ${{ runner.os }}-data-${{ hashFiles('path/to/data/**') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            ${{ runner.os }}-data-
+            
+  use-data:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    # JOB 1 ENDS  *****************************************************************************************************************************
-   
-    # JOB 2 : This job is to Build packer image.********************************************************************************** *****************************************       
-    Build-Image:
-      name: Job-2
-      runs-on: ubuntu-latest
-      steps:
-      - name: Checkout repo code
-        uses: actions/checkout@v1
+      - name: Restore Cached Data
+        uses: actions/cache@v2
+        with:
+          path: |
+            path/to/data
+          key: ${{ runner.os }}-data-${{ hashFiles('path/to/data/**') }}
 
-      - name: Cache Primes
-      id: cache-primes
-      uses: actions/cache@v2
-      with:
-        path: prime-numbers
-        key: ${{ runner.os }}-primes
 
-      if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: 
-          /generate-primes.sh -d prime-numbe
-          packer build "-var-file=packer/Variables.json" packer/packer.json
-          
-        env:
-          client-id: "d82451ce-9715-41d8-8007-a177082d6dd3"
-          tenant-id: "411962c5-bfd8-43e3-b5a7-fac389f9d4ea"
-          subscription-id: "60338480-8af5-4fc6-80fb-2715b3c42f42"
-          client_secret: "EuW8Q~5xTryWaoPHB4aBglvsjvP232XVkbb.pbi0"
-
-    # JOB 2 ENDS  ******************************************************************************************************************************
-           
-   
