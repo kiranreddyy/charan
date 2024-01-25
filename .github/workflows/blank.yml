@@ -1,42 +1,42 @@
-# Name of Action workflow
-name: Set - Get the Values
-on: [workflow_dispatch]
-      
-# Jobs are listed to be run of GitHub runners. 
+name: Share Data Between Jobs
+
+on: [push]
+
 jobs:
-  build:
+  generate-data:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
-      - name: Cache Data
-        uses: actions/cache@v2
-        with:
-          path: |
-            path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-            
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Generate Data
+      run: |
+        # Your data generation steps here
+        echo "Generated data" > generated-data.txt
+
+    - name: Cache Data
+      uses: actions/cache@v2
+      with:
+        path: |
+          generated-data.txt
+        key: ${{ runner.os }}-data-${{ hashFiles('generated-data.txt') }}
+
   use-data:
-    needs: build
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: Cache Primes
-        id: cache-primes
-        uses: actions/cache@v2
-        with:
-          path: prime-numbers
-          key: ${{ runner.os }}-primes
-          
-      - name: Generate Prime Numbers
-        if: steps.cache-primes.outputs.cache-hit != 'true'
-        run: /generate-primes.sh -d prime-numbe
+    - name: Restore Cached Data
+      uses: actions/cache@v2
+      with:
+        path: |
+          generated-data.txt
+        key: ${{ runner.os }}-data-${{ hashFiles('generated-data.txt') }}
 
-
+    - name: Use Data
+      run: |
+        # Your steps using the shared data
+        cat generated-data.txt
