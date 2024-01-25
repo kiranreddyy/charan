@@ -1,42 +1,24 @@
-name: Share Data Between Jobs
+name: Packer Build
 
 on: [workflow_dispatch]
 
 jobs:
-  generate-data:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: ubuntu-latest  
     steps:
-    - name: Checkout Repository
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Generate Data
-      run: |
-        # Your data generation steps here
-        echo "Generated data" > generated-data.txt
-
-    - name: Cache Data
-      uses: actions/cache@v2
+    - name: Setup Packer
+      uses: hashicorp/setup-packer@v2
       with:
-        path: |
-          generated-data.txt
-        key: ${{ runner.os }}-data-${{ hashFiles('generated-data.txt') }}
+        version: '1.7.3' 
 
-  use-data:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Restore Cached Data
-      uses: actions/cache@v2
+    - name: Azure Login
+      uses: azure/login@v1
       with:
-        path: |
-          generated-data.txt
-        key: ${{ runner.os }}-data-${{ hashFiles('generated-data.txt') }}
+        creds: ${{ secrets.AZURE_CRED}}
 
-    - name: Use Data
-      run: |
-        # Your steps using the shared data
-        cat generated-data.txt
+    - name: Build Packer image
+      run: 
+        packer build "-var-file=packer/Variables.json" packer/packer.json
