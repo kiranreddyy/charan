@@ -22,5 +22,5 @@ jobs:
 
     - name: Build Packer image
       run: 
-        Set-NetFirewallRule -Name WINRM-HTTP-In-TCP -RemoteAddress Any
+    
         packer build "-var-file=packer/Variables.json" packer/packer.json
