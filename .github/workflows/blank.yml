@@ -1,6 +1,6 @@
 name: Share Data Between Jobs
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
   generate-data:
