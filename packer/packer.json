@@ -17,6 +17,7 @@
     "VirtualNetwork": "",
     "Subnet": "",
     "VirtualNetworkRG": "",
+    "region": "",
     
     "vm_name": "",
     "vm_size": "",
@@ -41,13 +42,14 @@
       "winrm_use_ssl": "{{ user `winrm_use_ssl`}}",
       "winrm_insecure": "{{ user `winrm_insecure`}}",
       "winrm_timeout": "{{ user `winrm_timeout`}}",
-       "winrm_port": "{{ user `winrm_port`}}",
+      "winrm_port": "{{ user `winrm_port`}}",
       
       "build_resource_group_name": "{{user `resource_group_name`}}",
       "managed_image_resource_group_name": "{{user `resource_group_name`}}",
       "virtual_network_name": "{{user `Virtual_Network`}}",
       "virtual_network_subnet_name": "{{user `Subnet`}}",
       "virtual_network_resource_group_name": "{{user `Virtual_NetworkRG`}}",
+      "location": "{{user `region`}}",
       
       "managed_image_name": "{{user `vm_name`}}",
       "vm_size": "{{user `vm_size`}}",
