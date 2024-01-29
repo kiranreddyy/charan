@@ -41,6 +41,7 @@
       "winrm_use_ssl": "{{ user `winrm_use_ssl`}}",
       "winrm_insecure": "{{ user `winrm_insecure`}}",
       "winrm_timeout": "{{ user `winrm_timeout`}}",
+       "winrm_port": "{{ user `winrm_port`}}",
       
       "build_resource_group_name": "{{user `resource_group_name`}}",
       "managed_image_resource_group_name": "{{user `resource_group_name`}}",
