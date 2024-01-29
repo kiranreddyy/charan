@@ -10,6 +10,7 @@
     "winrm_password": "",
     "winrm_use_ssl": "",
     "winrm_insecure": "",
+    "winrm_port": "",
     "winrm_timeout": "",
     
     "resource_group_name": "",
