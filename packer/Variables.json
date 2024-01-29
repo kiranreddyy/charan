@@ -20,7 +20,7 @@
   
   "vm_name": "CSG-Image",
   "os_type": "Windows",
-  "vm_size": "Standard_B1s",
+  "vm_size": "Standard_DS1_v2",
   "offer": "WindowsServer",
   "sku": "2019-Datacenter",
   "publisher": "MicrosoftWindowsServer"
