@@ -10,7 +10,7 @@
   "winrm_use_ssl": "true",
   "winrm_insecure": "true",
   "winrm_timeout": "2m",
-  "winrm_port": "5985",
+  "winrm_port": "5986",
   
   
   "resource_group_name": "csgrg",
