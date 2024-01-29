@@ -9,7 +9,7 @@
   "winrm_password": "Welcome@2024",
   "winrm_use_ssl": "true",
   "winrm_insecure": "true",
-  "winrm_timeout": "10m",
+  "winrm_timeout": "5m",
   "winrm_port": "5986",
   
   
@@ -17,11 +17,12 @@
   "Virtual_Network": "csgvnet",
   "Subnet": "csgsubnet",
   "Virtual_NetworkRG": "csgrg",
+  "region": "East US",
   
   "vm_name": "CSG-Image",
   "os_type": "Windows",
   "vm_size": "Standard_DS1_v2",
   "offer": "WindowsServer",
-  "sku": "2019-Datacenter",
+  "sku": "2012-Datacenter",
   "publisher": "MicrosoftWindowsServer"
  }
