@@ -48,7 +48,6 @@
       "virtual_network_name": "{{user `Virtual_Network`}}",
       "virtual_network_subnet_name": "{{user `Subnet`}}",
       "virtual_network_resource_group_name": "{{user `Virtual_NetworkRG`}}",
-      "location": "{{user `region`}}",
       
       "managed_image_name": "{{user `vm_name`}}",
       "vm_size": "{{user `vm_size`}}",
