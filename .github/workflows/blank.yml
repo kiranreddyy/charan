@@ -27,6 +27,7 @@ jobs:
 
   job2: 
     runs-on: windows-latest 
+    needs: build
     steps:
       - uses: actions/checkout@v4
 
