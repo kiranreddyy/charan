@@ -9,7 +9,9 @@
   "winrm_password": "Welcome@2024",
   "winrm_use_ssl": "true",
   "winrm_insecure": "true",
-  "winrm_timeout": "5m",
+  "winrm_timeout": "2m",
+  "winrm_port: "5985",
+  
   
   "resource_group_name": "csgrg",
   "Virtual_Network": "csgvnet",
