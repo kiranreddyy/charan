@@ -22,7 +22,6 @@ jobs:
 
     - name: Build Packer image
       run: 
-    
         packer build "-var-file=packer/Variables.json" packer/packer.json
 
 
