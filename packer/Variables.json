@@ -12,15 +12,15 @@
   "winrm_timeout": "5m",
   "winrm_port": "5986",
   
-  "resource_group_name": "csgrg",
-  "Virtual_Network": "csgvnet",
-  "Subnet": "csgsubnet",
-  "Virtual_NetworkRG": "csgrg",
+  "resource_group_name": "RG",
+  "Virtual_Network": "vnet",
+  "Subnet": "subnet",
+  "Virtual_NetworkRG": "RG",
   
-  "vm_name": "CSG-Image",
+  "vm_name": "Image",
   "os_type": "Windows",
-  "vm_size": "Standard_DS1_v2",
+  "vm_size": "Standard_B1s",
   "offer": "WindowsServer",
-  "sku": "2012-Datacenter",
+  "sku": "2022-Datacenter",
   "publisher": "MicrosoftWindowsServer"
  }
