@@ -12,12 +12,10 @@
   "winrm_timeout": "5m",
   "winrm_port": "5986",
   
-  
   "resource_group_name": "csgrg",
   "Virtual_Network": "csgvnet",
   "Subnet": "csgsubnet",
   "Virtual_NetworkRG": "csgrg",
-  "region": "East US",
   
   "vm_name": "CSG-Image",
   "os_type": "Windows",
