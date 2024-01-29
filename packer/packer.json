@@ -17,7 +17,6 @@
     "VirtualNetwork": "",
     "Subnet": "",
     "VirtualNetworkRG": "",
-    "region": "",
     
     "vm_name": "",
     "vm_size": "",
