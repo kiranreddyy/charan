@@ -19,7 +19,7 @@
   
   "vm_name": "Image",
   "os_type": "Windows",
-  "vm_size": "Standard_B1",
+  "vm_size": "Standard_B1s",
   "offer": "WindowsServer",
   "sku": "2022-Datacenter",
   "publisher": "MicrosoftWindowsServer"
