@@ -1,8 +1,8 @@
 {
   "AZURE_TENANT_ID":"411962c5-bfd8-43e3-b5a7-fac389f9d4ea",
   "AZURE_SUBSCRIPTION_ID":"60338480-8af5-4fc6-80fb-2715b3c42f42",
-  "AZURE_CLIENT_SECRETE":"EuW8Q~5xTryWaoPHB4aBglvsjvP232XVkbb.pbi0",
-  "AZURE_CLIENT_ID":"d82451ce-9715-41d8-8007-a177082d6dd3",
+  "AZURE_CLIENT_SECRETE":"E5P8Q~bghiMOGp2jwcRDf5ch9fAy263OaDJG3cWh",
+  "AZURE_CLIENT_ID":"b996e4ee-0dc8-45b1-9ea1-0c7106056521",
   
   "communicator": "winrm",
   "winrm_username": "packer",
