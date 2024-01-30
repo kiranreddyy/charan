@@ -32,7 +32,8 @@ jobs:
       with:
         azPSVersion: "latest"
         inlineScript: |
-          Get-AzWebApp
+            Get-AzContext
+            Get-AzResourceGroup
 
     - name: Build Packer image
       run: 
