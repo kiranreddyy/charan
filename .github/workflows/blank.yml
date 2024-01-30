@@ -19,6 +19,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CRED}}
+        enable-AzPSSession: true
 
     - name: Azure CLI script
       uses: azure/CLI@v1
@@ -32,9 +33,7 @@ jobs:
       with:
         azPSVersion: "latest"
         inlineScript: |
-            Run Connect-AzAccount
             Get-AzContext
-            Get-AzResourceGroup
 
     - name: Build Packer image
       run: 
